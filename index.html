@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading Screen Example</title>
+<style>
+    /* General reset */
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #000; /* Completely black background */
+        color: #fff;
+        overflow: hidden;
+    }
+
+    /* Loader styling */
+    #loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+    }
+
+    #loader-text {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    /* Animated dots */
+    .dots span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .dots span:nth-child(1) { animation-delay: 0s; }
+    .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1); }
+    }
+
+    /* Content styling */
+    #content {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+    }
+
+    #content img {
+        max-width: 300px;
+        margin-top: 50px; /* top-middle positioning */
+        margin-bottom: 20px;
+    }
+
+    .names {
+        font-size: 1.2em;
+        margin: 5px 0;
+    }
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+    <div id="loader-text">1843 | AE</div>
+    <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<!-- Main content -->
+<div id="content">
+    <img src="https://files.catbox.moe/plpci3.png" alt="Main Image">
+    <div class="names">1843 | AE</div>
+    <div class="names"> </div>
+    <div class="names">stol3n/mev</div>
+    <div class="names">CLNP/xen</div>
+</div>
+
+<script>
+    // Simulate loading (2 seconds)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            // Fade out loader
+            const loader = document.getElementById('loader');
+            loader.style.transition = 'opacity 0.5s';
+            loader.style.opacity = 0;
+
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.getElementById('content').style.display = 'flex';
+            }, 500); // Wait for fade-out to finish
+        }, 2000); // 2 seconds loading
+    });
+</script>
+
+</body>
+</html>
